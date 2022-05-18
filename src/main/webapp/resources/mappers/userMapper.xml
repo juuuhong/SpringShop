@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.shop.login.dao.UserMapper">
+	<insert id="inserUser" parameterType="com.spring.shop.login.dto.UserDTO">
+		insert into users (
+			id,
+			"name",
+			pw,
+			gender,
+			birthday,
+			addr
+		)values(
+			#{id},
+			#{name},
+			#{pw},
+			#{gender},
+			#{birthday},
+			#{preAddr}
+		)
+	</insert>
+	
+	<select id="login" parameterType="com.spring.shop.login.dto.UserDTO" resultType="UserDTO">
+		select 
+			id,
+			"name",
+			pw,
+			gender,
+			birthday,
+			addr
+		from users 
+		where id=#{id} and pw=#{pw}
+	</select>
+	
+</mapper>
