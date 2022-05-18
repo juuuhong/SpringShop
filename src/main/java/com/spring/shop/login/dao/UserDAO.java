@@ -22,4 +22,12 @@ public class UserDAO {
 	public UserDTO login(UserDTO dto) {
 		return sqlSession.getMapper(UserMapper.class).login(dto);
 	}
+	
+	public int userUpdate(UserDTO dto) {
+		return sqlSession.getMapper(UserMapper.class).userUpdate(dto);
+	}
+	
+	public int pwChange(UserDTO dto) {
+		return sqlSession.getMapper(UserMapper.class).pwChange(dto);
+	}
 }

@@ -11,13 +11,14 @@ public class UserDTO {
 	private String preAddr;
 	private String sufAddr;
 	private String addr;
+	private String newPw;
 	
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public UserDTO(String id, String name, String pw, String gender, String birthday, String createAt, String preAddr,
-			String sufAddr, String addr) {
+			String sufAddr, String addr, String newPw) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -28,8 +29,17 @@ public class UserDTO {
 		this.preAddr = preAddr;
 		this.sufAddr = sufAddr;
 		this.addr = addr;
+		this.newPw = newPw;
 	}
 	
+	public String getNewPw() {
+		return newPw;
+	}
+
+	public void setNewPw(String newPw) {
+		this.newPw = newPw;
+	}
+
 	public String getAddr() {
 		return addr;
 	}

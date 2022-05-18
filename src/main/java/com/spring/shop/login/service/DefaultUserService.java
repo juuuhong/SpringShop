@@ -23,4 +23,15 @@ public class DefaultUserService implements UserService{
 		return userDAO.login(dto);
 	}
 
+	@Override
+	public int userUpdate(UserDTO dto) {
+		dto.setPreAddr(dto.getPreAddr() + "!" + dto.getSufAddr());
+		return userDAO.userUpdate(dto);
+	}
+
+	@Override
+	public int pwChange(UserDTO dto) {
+		return userDAO.pwChange(dto);
+	}
+
 }

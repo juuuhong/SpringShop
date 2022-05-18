@@ -32,7 +32,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/signUpPro", method = RequestMethod.POST)
 	public String insertUser(UserDTO dto, Model m) {
-		if(dto.getSufAddr() == null && dto.getSufAddr().equals("")) {
+		if(dto.getSufAddr() == null || dto.getSufAddr().equals("")) {
 			dto.setSufAddr("*");
 		}
 		int result = defaultUserService.insertUser(dto);
@@ -55,7 +55,9 @@ public class LoginController {
 			System.out.println(dto.getPreAddr());
 			if(!addr[1].equals("*")) {
 				dto.setSufAddr(addr[1]);
-				System.out.println("addr[1]이 *이 아님"+dto.getSufAddr());
+				System.out.println("addr[1]이 *이 아님 : "+dto.getSufAddr());
+			}else {
+				addr[1]="*";
 			}
 			m.addAttribute("MSG","로그인 성공");
 			m.addAttribute("content", "main.jsp");
@@ -83,10 +85,55 @@ public class LoginController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/pwChange" , method = RequestMethod.GET)
+	public String pwChange() {
+		return "pwChange";
+	}
+
+	@RequestMapping(value = "/newPw" , method = RequestMethod.POST)
+	public String newPw(UserDTO dto, Model m, HttpSession session) {
+		UserDTO user = (UserDTO) session.getAttribute("loginUser");
+		dto.setId(user.getId());
+		int result = defaultUserService.pwChange(dto);
+		if(result > 0) {
+			m.addAttribute("MSG", "비밀번호 수정 완료");
+			dto = defaultUserService.login(dto);
+			session.setAttribute("loginUser", dto);
+		}else {
+			m.addAttribute("MSG", "비밀번호 수정 실패");
+		}
+		return "pwChange";
+	}
+	
 	@RequestMapping(value = "/userUpdate" , method = RequestMethod.POST)
-	public String userUpdate(UserDTO dto, Model m) {
-		//defaultUserService.userUpdate(dto);
+	public String userUpdate(UserDTO dto, Model m, HttpSession session) {
+		// 아이디값안넘어와서 세션에서 꺼냄
+		UserDTO user = (UserDTO) session.getAttribute("loginUser");
+		dto.setId(user.getId());
+		// sufAddr 값없을때 *로 저장
+		if(dto.getSufAddr() == null || dto.getSufAddr().equals("")) {
+			dto.setSufAddr("*");
+		}
+		// 유저정보 업데이트(id, pw, addr 넘어갈거고..)
+		int result = defaultUserService.userUpdate(dto);
+		if(result > 0) {
+			m.addAttribute("MSG", "회원정보수정 완료");
+			// 세션값 다시 설정 유저정보 다 가져오기..
+			dto = defaultUserService.login(dto);
+			String[] addr = dto.getAddr().split("!");
+			dto.setPreAddr(addr[0]);
+			if(!addr[1].equals("*")) {
+				dto.setSufAddr(addr[1]);
+				System.out.println("addr[1]이 *이 아님 : "+dto.getSufAddr());
+			}else {
+				addr[1]="*";
+			}
+			session.setAttribute("loginUser", dto);
+		}else {
+			m.addAttribute("MSG", "회원정보수정 실패");
+		}
 		m.addAttribute("content","myPage.jsp");
 		return "home";
 	}
+	
 }

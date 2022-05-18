@@ -32,4 +32,12 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 	
+	<update id="userUpdate" parameterType="com.spring.shop.login.dto.UserDTO">
+		update users set addr=#{preAddr} where id=#{id} and pw=#{pw}
+	</update>
+	
+	<update id="pwChange" parameterType="com.spring.shop.login.dto.UserDTO">
+		update users set pw=#{newPw} where id=#{id} and pw=#{pw}
+	</update>
+	
 </mapper>

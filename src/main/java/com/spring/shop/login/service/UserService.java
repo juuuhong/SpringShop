@@ -6,5 +6,6 @@ public interface UserService {
 	
 	int insertUser(UserDTO dto);
 	UserDTO login(UserDTO dto);
-	
+	int userUpdate(UserDTO dto);
+	int pwChange(UserDTO dto);
 }

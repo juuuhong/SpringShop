@@ -16,7 +16,7 @@
 			<div class="valid-feedback"></div>
 		</div>
 		<div class="form-group has-danger">
-			<label class="form-label mt-4" for="pwch">비밀번호 재확인(*)</label> 
+			<label class="form-label mt-4" for="pwch">비밀번호 확인(*)</label> 
 			<input type="password" class="form-control is-invalid" id="pwch">
 			<div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
 		</div>
