@@ -34,4 +34,9 @@ public class DefaultUserService implements UserService{
 		return userDAO.pwChange(dto);
 	}
 
+	@Override
+	public int deleteUser(UserDTO dto) {
+		return userDAO.deleteUser(dto);
+	}
+
 }

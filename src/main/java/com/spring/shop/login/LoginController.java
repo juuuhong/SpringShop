@@ -96,11 +96,11 @@ public class LoginController {
 		dto.setId(user.getId());
 		int result = defaultUserService.pwChange(dto);
 		if(result > 0) {
-			m.addAttribute("MSG", "비밀번호 수정 완료");
+			m.addAttribute("MSG1", "비밀번호 수정 완료");
 			dto = defaultUserService.login(dto);
 			session.setAttribute("loginUser", dto);
 		}else {
-			m.addAttribute("MSG", "비밀번호 수정 실패");
+			m.addAttribute("MSG2", "비밀번호 수정 실패");
 		}
 		return "pwChange";
 	}
@@ -134,6 +134,25 @@ public class LoginController {
 		}
 		m.addAttribute("content","myPage.jsp");
 		return "home";
+	}
+	
+	@RequestMapping(value = "/deleteUser" , method = RequestMethod.GET)
+	public String deleteUser() {
+		return "deleteUser";
+	}
+
+	@RequestMapping(value = "/deleteUserPro" , method = RequestMethod.POST)
+	public String deleteUserPro(UserDTO dto, Model m, HttpSession session) {
+		UserDTO user = (UserDTO) session.getAttribute("loginUser");
+		dto.setId(user.getId());
+		int result = defaultUserService.deleteUser(dto);
+		if(result > 0) {
+			m.addAttribute("MSG1", "회원탈퇴 완료");
+			session.invalidate();
+		}else {
+			m.addAttribute("MSG2", "회원탈퇴 실패");
+		}
+		return "deleteUser";
 	}
 	
 }

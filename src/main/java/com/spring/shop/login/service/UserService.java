@@ -8,4 +8,5 @@ public interface UserService {
 	UserDTO login(UserDTO dto);
 	int userUpdate(UserDTO dto);
 	int pwChange(UserDTO dto);
+	int deleteUser(UserDTO dto);
 }

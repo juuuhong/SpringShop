@@ -42,6 +42,10 @@
 				</tr>
 			</tbody>
 		</table> 
+		<div style='width:80px;float: right;'>
+			<button type="button" onclick="deleteUser()" >회원탈퇴</button>
+		</div>
+		<br> <hr>
 		<button class="w-100 btn btn-lg btn-primary bg-dark" type="submit">정보수정하기</button>
 	</form>
 </section>
@@ -74,6 +78,10 @@ function addrfuncion(){
 }
 function pwChange(){
 	var url = "pwChange"
-	open(url, "confirmNickname",  "toolbar=no, location=no, status=no, menubar=no, scrollbars=no resizeable=no, width=400, height=400");
+	open(url, "pwChange",  "toolbar=no, location=no, status=no, menubar=no, scrollbars=no resizeable=no, width=400, height=400");
+}
+function deleteUser(){
+	var url = "deleteUser"
+	open(url, "deleteUser",  "toolbar=no, location=no, status=no, menubar=no, scrollbars=no resizeable=no, width=450, height=300");
 }
 </script>

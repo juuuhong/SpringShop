@@ -31,3 +31,8 @@
 		</tr>
 	</tbody>
 </table>
+
+<div style='width:80px;float: right;'>
+	<button type="button" onclick="location.href='/noticeWrite'" >글작성</button>
+</div>
+<br >

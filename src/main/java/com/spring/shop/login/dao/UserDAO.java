@@ -15,7 +15,7 @@ public class UserDAO {
 	
 	// 회원가입
 	public int insertUser(UserDTO dto) {
-		return sqlSession.getMapper(UserMapper.class).inserUser(dto);
+		return sqlSession.getMapper(UserMapper.class).insertUser(dto);
 	}
 	
 	//로그인
@@ -29,5 +29,9 @@ public class UserDAO {
 	
 	public int pwChange(UserDTO dto) {
 		return sqlSession.getMapper(UserMapper.class).pwChange(dto);
+	}
+	
+	public int deleteUser(UserDTO dto) {
+		return sqlSession.getMapper(UserMapper.class).deleteUser(dto);
 	}
 }

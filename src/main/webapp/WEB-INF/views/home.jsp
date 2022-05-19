@@ -11,10 +11,18 @@
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="/resources/js/datepicker.min.js"></script>
 <script type="text/javascript" src="/resources/js/datepicker.ko.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/resources/js/ckeditor.js"></script>
+<script src="/resources/js/ko.js"></script>
+<!-- 넓이 높이 조절 -->
+<style>
+	.ck.ck-editor {
+    	max-width: 1000px;
+	}
+	.ck-editor__editable {
+	    min-height: 500px;
+	}
+</style>
 </head>
 <!--  부트스트랩 js 사용 -->
 <body>
