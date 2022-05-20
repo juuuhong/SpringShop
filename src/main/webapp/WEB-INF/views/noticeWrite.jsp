@@ -20,8 +20,9 @@
 				} );
 		</script>
 	</div>
-	<div style='width:80px;float: right;'>
-		<input type="submit" value="저장하기" >
+	<div style='float: right;'>
+		<input type="submit" class="btn btn-primary bg-dark" value="저장하기" >
+		<button type="button" class="btn btn-primary bg-dark" onclick="location.href='/notice'">목록</button>
 	</div>
 	<br >
 </form>

@@ -17,30 +17,44 @@
 	</insert>
 	
 	<!-- 게시글 하나 조회 -->
-	<!-- <select id="noticeContent" parameterType="com.spring.shop.notice.dto.NoticeDTO" resultType="NoticeDTO">
+	<select id="noticeContent" parameterType="com.spring.shop.notice.dto.NoticeDTO" resultType="NoticeDTO">
 		select
 			num,
 			userId,
 			title,
 			content,
-			creatAt,
+			createAt,
 			readcount
 		from notice
 		where num=#{num}
-	</select> -->
+	</select>
 	
 	<!-- 조회수 +1 -->
-	<!-- <update id="readcountUp" parameterType="com.spring.shop.notice.dto.NoticeDTO">
+	<update id="readcountUp" parameterType="com.spring.shop.notice.dto.NoticeDTO">
 		update notice set readcount = readcount+1 where num = #{num}
-	</update> -->
+	</update>
+	
+	<!-- 공지사항전체 리스트 -->
+	<select id="noticeList" parameterType="com.spring.shop.notice.dto.NoticeDTO" resultType="NoticeDTO">
+		select
+			num,
+			userId,
+			title,
+			content,
+			createAt,
+			readcount
+		from notice
+	</select>
+	
+	
 	
 	<!-- 게시글 수정 -->
-	<!-- <update id="updateArticle" parameterType="com.spring.shop.notice.dto.NoticeDTO">
-		UPDATE notice SET title = #{title}, content = #{content} WHERE num = #{num}
-	</update> -->
+	<update id="noticeModify" parameterType="com.spring.shop.notice.dto.NoticeDTO">
+		UPDATE notice SET title = #{title}, content = #{content} WHERE num = #{num} and userId=#{userId}
+	</update>
 	
 	<!-- 게시물삭제 -->
-	<!-- <delete id="deleteArticle" parameterType="com.spring.shop.notice.dto.NoticeDTO">
-		DELETE FROM notice WHERE num = #{num}
-	</delete> -->
+	<!-- <delete id="noticeDelete" parameterType="com.spring.shop.notice.dto.NoticeDTO">
+		DELETE FROM notice WHERE num = #{num} and  userId = #{userId}
+	</delete> --> 
 </mapper>

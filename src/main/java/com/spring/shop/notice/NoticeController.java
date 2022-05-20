@@ -1,5 +1,7 @@
 package com.spring.shop.notice;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/notice" , method = RequestMethod.GET)
 	public String noticehome(Model m) {
+		m.addAttribute("notices", defaultNoticeService.noticeList());
 		m.addAttribute("content", "notice.jsp");
 		return "home";
 	}
@@ -43,8 +46,44 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/noticeContent" , method = RequestMethod.GET)
-	public String noticeContent(Model m) {
+	public String noticeContent(Model m, NoticeDTO dto) {
+		dto = defaultNoticeService.noticeContent(dto); 
+		// 조회수+1
+		defaultNoticeService.readcountUp(dto);
+		m.addAttribute("notice", dto);
 		m.addAttribute("content", "noticeContent.jsp");
 		return "home";
 	}
+	
+	@RequestMapping(value = "/noticeModify" , method = RequestMethod.GET)
+	public String noticeModify(Model m, NoticeDTO dto) {
+		dto = defaultNoticeService.noticeContent(dto); 
+		m.addAttribute("notice", dto);
+		m.addAttribute("content", "noticeModify.jsp");
+		return "home";
+	}
+	
+	@RequestMapping(value = "/noticeModifyPro" , method = RequestMethod.POST)
+	public String noticeModifyPro(Model m, NoticeDTO dto, HttpSession session) {
+		System.out.println(dto.getContent());
+		System.out.println(dto.getTitle());
+		System.out.println(dto.getNum());
+		UserDTO user = (UserDTO) session.getAttribute("loginUser");
+		dto.setUserId(user.getId());
+		int result = defaultNoticeService.noticeModify(dto); 
+		if(result > 0) {
+			m.addAttribute("MSG", "공지사항 수정완료");
+			//m.addAttribute("content", "notice.jsp");//?num="+ dto.getNum();
+		}
+		m.addAttribute("content", "notice.jsp");
+		return "home";
+	}
+	/*
+	 * @RequestMapping(value = "/noticeDelete" , method = RequestMethod.GET) public
+	 * String noticeDelete(Model m, NoticeDTO dto) { int result =
+	 * defaultNoticeService.noticeDelete(dto); m.addAttribute("content",
+	 * "notice.jsp"); return "home"; }
+	 */
+	
+	//noticeModify
 }
