@@ -25,4 +25,4 @@
 		<button type="button" class="btn btn-primary bg-dark" onclick="location.href='/noticeContent?num=${notice.num}'">취소</button>
 	</div>
 	<br >
-</form>
+</form>z
