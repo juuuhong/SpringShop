@@ -39,8 +39,7 @@ public class NoticeDAO {
 	}
 	
 	// ±€ ªË¡¶
-	/*
-	 * public int noticeDelete(NoticeDTO dto) { return
-	 * sqlSession.getMapper(NoticeMapper.class).noticeDelete(dto); }
-	 */
+	 public int noticeDelete(NoticeDTO dto) {
+		 return sqlSession.getMapper(NoticeMapper.class).noticeDelete(dto);
+	}
 }

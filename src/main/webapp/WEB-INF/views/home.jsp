@@ -17,9 +17,9 @@
 <script src="/resources/js/ko.js"></script>
 <!-- 넓이 높이 조절 -->
 <style>
-	.ck.ck-editor {
+	/* .ck.ck-editor {
     	max-width: 1000px;
-	}
+	} */
 	.ck-editor__editable {
 	    min-height: 500px;
 	}
@@ -106,7 +106,6 @@
 		if (msg != '') {
 			alert(msg);
 		}
-		
 	</script>
 
 </body>

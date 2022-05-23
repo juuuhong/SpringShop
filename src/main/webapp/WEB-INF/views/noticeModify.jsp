@@ -9,7 +9,7 @@
 	</div>
 	<div class="form-group">
 		<label for="content">내용</label>
-		<textarea name="content" id="editor" class="form-control" placeholder="${notice.content }" value="${notice.content }"></textarea>
+		<textarea name="content" id="editor" class="form-control">${notice.content }</textarea>
 		<script>
 			ClassicEditor
 				.create( document.querySelector( '#editor' ), {
@@ -25,4 +25,4 @@
 		<button type="button" class="btn btn-primary bg-dark" onclick="location.href='/noticeContent?num=${notice.num}'">취소</button>
 	</div>
 	<br >
-</form>z
+</form>

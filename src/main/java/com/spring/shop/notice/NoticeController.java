@@ -23,6 +23,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice" , method = RequestMethod.GET)
 	public String noticehome(Model m) {
 		m.addAttribute("notices", defaultNoticeService.noticeList());
+		System.out.println(defaultNoticeService.noticeList());
 		m.addAttribute("content", "notice.jsp");
 		return "home";
 	}
@@ -73,17 +74,28 @@ public class NoticeController {
 		int result = defaultNoticeService.noticeModify(dto); 
 		if(result > 0) {
 			m.addAttribute("MSG", "공지사항 수정완료");
-			//m.addAttribute("content", "notice.jsp");//?num="+ dto.getNum();
+			m.addAttribute("content", "notice?num='dto.getNum()'.jsp");//?num="+ dto.getNum();
+		}else {
+			m.addAttribute("MSG", "공지사항 수정실패");
+			m.addAttribute("content", "notice?num='dto.getNum()'.jsp");
 		}
-		m.addAttribute("content", "notice.jsp");
 		return "home";
 	}
-	/*
-	 * @RequestMapping(value = "/noticeDelete" , method = RequestMethod.GET) public
-	 * String noticeDelete(Model m, NoticeDTO dto) { int result =
-	 * defaultNoticeService.noticeDelete(dto); m.addAttribute("content",
-	 * "notice.jsp"); return "home"; }
-	 */
 	
-	//noticeModify
+	@RequestMapping(value = "/noticeDelete" , method = RequestMethod.GET)
+	public String noticeDelete(Model m, NoticeDTO dto, HttpSession session) {
+		UserDTO user = (UserDTO) session.getAttribute("loginUser");
+		dto.setUserId(user.getId());
+		int result = defaultNoticeService.noticeDelete(dto);
+		if(result > 0) {
+			m.addAttribute("MSG", "공지사항 삭제완료");
+			m.addAttribute("content", "notice.jsp");
+		}else {
+			m.addAttribute("MSG", "공지사항 삭제실패");
+			m.addAttribute("content","noticeContent?num='dto.getNum()'.jsp");
+			
+		}
+		return "home"; 
+	}
+	 
 }

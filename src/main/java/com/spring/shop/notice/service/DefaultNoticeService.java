@@ -40,10 +40,9 @@ public class DefaultNoticeService implements NoticeService{
 		return noticeDAO.noticeModify(dto);
 	}
 
+	@Override
+	public int noticeDelete(NoticeDTO dto) {
+		return noticeDAO.noticeDelete(dto);
+	}
 
-	/*
-	 * @Override public int noticeDelete(NoticeDTO dto) { return
-	 * noticeDAO.noticeDelete(dto); }
-	 */
-	
 }

@@ -10,5 +10,5 @@ public interface NoticeService {
 	NoticeDTO noticeContent(NoticeDTO dto);
 	void readcountUp(NoticeDTO dto);
 	int noticeModify(NoticeDTO dto);
-	/* int noticeDelete(NoticeDTO dto); */
+	int noticeDelete(NoticeDTO dto);
 }

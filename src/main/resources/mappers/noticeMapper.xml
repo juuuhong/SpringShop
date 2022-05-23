@@ -43,10 +43,8 @@
 			content,
 			createAt,
 			readcount
-		from notice
+		from notice ORDER BY num DESC
 	</select>
-	
-	
 	
 	<!-- 게시글 수정 -->
 	<update id="noticeModify" parameterType="com.spring.shop.notice.dto.NoticeDTO">
@@ -54,7 +52,7 @@
 	</update>
 	
 	<!-- 게시물삭제 -->
-	<!-- <delete id="noticeDelete" parameterType="com.spring.shop.notice.dto.NoticeDTO">
+	<delete id="noticeDelete" parameterType="com.spring.shop.notice.dto.NoticeDTO">
 		DELETE FROM notice WHERE num = #{num} and  userId = #{userId}
-	</delete> --> 
+	</delete>
 </mapper>
