@@ -2,6 +2,7 @@ package com.spring.shop.notice.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,14 @@ public class NoticeDAO {
 	// 글 삭제
 	 public int noticeDelete(NoticeDTO dto) {
 		 return sqlSession.getMapper(NoticeMapper.class).noticeDelete(dto);
+	}
+	public int insertAttach(Map<String, Object> param) {
+		return sqlSession.getMapper(NoticeMapper.class).insertAttach(param);
+		
+	}
+	
+	// 파일이 저장되어 있으면 가져오기
+	public String getFile(NoticeDTO dto) {
+		return sqlSession.getMapper(NoticeMapper.class).getFile(dto);
 	}
 }

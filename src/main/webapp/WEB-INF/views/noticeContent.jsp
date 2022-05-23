@@ -10,20 +10,13 @@
 			<td colspan="4">${notice.title}</td>
 		</tr>
 		<tr>
-			<th scope="row">내용</th>
-			<td colspan="4">${notice.content}</td>
-			<!-- <td colspan="4"><div id="content"></div>
-				<script language="javascript">
-					var tmpStr = "${notice.content}";
-					tmpStr = tmpStr.replaceAll("&lt;","<");
-					tmpStr = tmpStr.replaceAll("&gt;",">");
-					tmpStr = tmpStr.replaceAll("&amp;lt;","<");
-					tmpStr = tmpStr.replaceAll("&amp;gt;",">");
-					tmpStr = tmpStr.replaceAll("&amp;nbsp;"," ");
-					tmpStr = tmpStr.replaceAll("&amp;amp;","&");
-					document.getElementById('content').innerGTML=tmpStr;
-				</script> 
-			</td> -->
+			<th scope="row" >내용</th>
+			<td colspan="4">
+			<c:if test="${file != null}">
+				<img src="/resources/file/${requestScope.file}"/>
+				</c:if>
+				${notice.content}
+			</td>
 		</tr>
 		<tr>
 			<th scope="row">작성자</th>

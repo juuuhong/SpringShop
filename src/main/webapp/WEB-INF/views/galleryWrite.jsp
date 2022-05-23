@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="/resources/js/UploadAdapter.js"></script>
 
 <h2 class="container px-4 py-4 pb-2"></h2>
 <form method="post" action="galleryWritePro">
@@ -12,15 +13,17 @@
 		<textarea name="content" id="editor" class="form-control" placeholder="내용작성"></textarea>
 		<script>
 		ClassicEditor
-		.create( editorElement, {
-			ckfinder: {
-				options: {
-					resourceType: 'Images'
-				}
-			}
-		} )
-		.then( ... )
-		.catch( ... );
+		.create( document.querySelector( '#editor' ), {
+			/* ckfinder: {
+				uploadUrl: '/ajax/image'
+			}, */
+			language: 'ko' //언어설정
+		}).then(ditor => {
+			window.editor = editor
+		})
+		.catch( error => {
+			console.error( error );
+		} );
 </script>
 
 	</div>
@@ -30,10 +33,3 @@
 	</div>
 	<br >
 </form>
-<script>
-function MyCustomUploadAdapterPlugin(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-        return new UploadAdapter(loader)
-    }
-}
-</script>

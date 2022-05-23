@@ -1,14 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+	#notice_wrapper {
+		margin : 0 0 20px 0
+	}
+</style>
 
 <h2 class="container px-4 py-4 pb-2">공지사항</h2>
-<c:choose>
-	<c:when test="${notices eq [] }">
-		<h4 align="center">공지사항이 없습니다.</h4>
-	</c:when>
-	<c:otherwise>
-	<div>
+	<div id = "notice_wrapper">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -19,45 +19,41 @@
 					<th scope="col">조회수</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:forEach items="${notices }" var="notices">
-					<tr>
-						<th scope="row">
-							${notices.num }
-						</th>
-						<td>
-							<a class="notices" href='/noticeContent?num=${notices.num}'>
-							<c:out value="${notices.title}" />
-							</a>
-						</td>
-						<td><c:out value="${notices.userId}"/></td>
-						<td>
-							<fmt:parseDate value="${notices.createAt}" var="dateValue" pattern="yyyyMMddHHmmss"/>
-							<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
-						</td>
-						<td><c:out value="${notices.readcount}"/></td>
-					</tr>
-				</c:forEach>
+			<tbody class="notice_list">
+				
 			</tbody>
 		</table>
+		<div style='width:80px;float: right;'>
+			<button type="button" class="btn btn-primary bg-dark" onclick="location.href='/noticeWrite'">글작성</button>
 		</div>
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled">
-					<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item">
-					<a class="page-link" href="#">Next</a>
-				</li>
-			</ul>
-		</nav>
-	</c:otherwise>
-</c:choose>
+	</div>
+<script>
+	$(document).ready(function(){
+		doSearch();
+	});
+	
+	function doSearch(){
+		$.ajax({
+		    type : 'GET',
+		    url : "/getNoticeList",
+		    data : {},
+		    error : function(error) {
+		        alert("Error!");
+		    },
+		    success : function(value) {
+		    	console.log(value);
+		    	
+		    	let html = "";
+		    	for (let i = 0; i < value.length; i++) {
+		    		html += '<tr><th scope="row">'+value[i].num+'</th>';
+		    		html += '<td><a class="notices" href=/noticeContent?num='+value[i].num +'>' + value[i].title + '</a></td>';
+		    		html += '<td>'+ value[i].userId + '</td>';
+		    		html += '<td>' + value[i].createAt + '</td>';
+		    		html += '<td>' + value[i].readcount + '</td></tr>';
+				}
+		    	$(".notice_list").append(html);
+		    }
+		});
+	}
+</script>
 
-<div style='width:80px;float: right;'>
-	<button type="button" class="btn btn-primary bg-dark" onclick="location.href='/noticeWrite'">글작성</button>
-</div>
-<br >
