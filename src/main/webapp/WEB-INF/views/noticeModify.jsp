@@ -9,7 +9,12 @@
 	</div>
 	<div class="form-group">
 		<label for="content">내용</label>
-		<textarea name="content" id="editor" class="form-control">${notice.content }</textarea>
+		<textarea name="content" id="editor" class="form-control">
+			<c:if test="${file != null}">
+				<img src="/resources/file/${requestScope.file}"/>
+			</c:if>
+			${notice.content}
+		</textarea>
 		<script>
 			ClassicEditor
 				.create( document.querySelector( '#editor' ), {
@@ -19,6 +24,7 @@
 					console.error( error );
 				} );
 		</script>
+		<input type="file" name="file" style="margin: 10px 0 0 0">
 	</div>
 	<div style='float: right;'>
 		<input type="submit" class="btn btn-primary bg-dark" value="수정하기" >

@@ -12,8 +12,8 @@
 		<tr>
 			<th scope="row" >내용</th>
 			<td colspan="4">
-			<c:if test="${file != null}">
-				<img src="/resources/file/${requestScope.file}"/>
+				<c:if test="${file != null}">
+					<img src="/resources/file/${requestScope.file}"/>
 				</c:if>
 				${notice.content}
 			</td>

@@ -84,6 +84,7 @@ public class NoticeController {
 	public String noticeModify(Model m, NoticeDTO dto) {
 		dto = defaultNoticeService.noticeContent(dto); 
 		m.addAttribute("notice", dto);
+		m.addAttribute("file", defaultNoticeService.getFile(dto));
 		m.addAttribute("content", "noticeModify.jsp");
 		return "home";
 	}
