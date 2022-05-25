@@ -45,6 +45,7 @@
 				<!-- <beans:value>classpath:memberMapper.xml</beans:value> -->
  				<beans:value>classpath:mappers/userMapper.xml</beans:value> 
  				<beans:value>classpath:mappers/noticeMapper.xml</beans:value> 
+ 				<beans:value>classpath:mappers/galleryMapper.xml</beans:value> 
 			</beans:list>
 		</beans:property>
 	</beans:bean>

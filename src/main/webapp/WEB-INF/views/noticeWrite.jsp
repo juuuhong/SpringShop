@@ -20,7 +20,21 @@
 					console.error( error );
 				} );
 		</script>
-		<input type="file" name="file" style="margin: 10px 0 0 0">
+		<table>
+		<tr>
+			<td rowspan="2">
+				<img src="/resources/sample/default.jpg" id="previewImg" width="150" />
+			</td>
+			<td>
+				<input type="file" name="file" id="file" onchange="preview(this)" class="file"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" value="삭제" onclick="cancel()" class=""/>
+			</td>
+		</tr>
+	</table>
 	</div>
 	<div style='float: right;'>
 		<input type="submit" class="btn btn-primary bg-dark" value="저장하기" >
@@ -28,3 +42,24 @@
 	</div>
 	<br >
 </form>
+<script>
+	// 이미지 선택시 미리보기
+	function preview(input) {
+        if(input.files && input.files[0]) {
+            const reader = new FileReader()
+            reader.onload = e => {
+                const previewImage = document.getElementById("previewImg")
+                previewImage.src = e.target.result
+            } 
+            reader.readAsDataURL(input.files[0]) 
+        }
+    }
+	// 이미지 삭제시 file, previewimg 초기화
+	function cancel(){
+		  var elem = document.getElementById("previewImg");
+		  elem.src = "/resources/sample/default.jpg"; // img 초기화
+		  
+		  var file = document.getElementById("file");
+		  file.value = ""; // file 초기화
+	}
+</script>

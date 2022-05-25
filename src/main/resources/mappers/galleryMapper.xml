@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.shop.gallery.dao.GalleryMapper">
+	<!-- 갤러리 글 저장 -->
+	<insert id="insertGallery" parameterType="com.spring.shop.gallery.dto.GalleryDTO" useGeneratedKeys="true" keyProperty="num">
+		insert into gallery(
+			num,
+			userId,
+			title,
+			content
+		)values(
+			nextval('gNum_seq'),
+			#{userId},
+			#{title},
+			#{content}
+		)
+	</insert>
+	
+	<insert id="insertAttach" parameterType="map">
+		insert into board_attach (
+			board_type,
+			board_id,
+			file_num,
+			file_name,
+			saved_file_name,
+			file_size
+		)values (
+			'Gallery',
+			#{board_id},
+			nextval('seq_file_num'),
+			#{file_name},
+			#{saved_file_name},
+			#{file_size}
+		)
+		
+	</insert>
+	
+	<!-- 갤러리 리스트 가져오기 -->
+	<select id="noticeList" parameterType="com.spring.shop.gallery.dto.GalleryDTO" resultType="GalleryDTO">
+		select
+			num,
+			userId,
+			title,
+			content,
+			TO_CHAR(TO_TIMESTAMP(createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD HH24:MI') "createAt",
+			readcount
+		from gallery ORDER BY num DESC
+	</select>
+</mapper>

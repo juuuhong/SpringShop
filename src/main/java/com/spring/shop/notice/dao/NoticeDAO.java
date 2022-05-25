@@ -20,6 +20,10 @@ public class NoticeDAO {
 	public int insertNotice(NoticeDTO dto) {
 		return sqlSession.getMapper(NoticeMapper.class).insertNotice(dto);
 	}
+	public int insertAttach(Map<String, Object> param) {
+		return sqlSession.getMapper(NoticeMapper.class).insertAttach(param);
+	}
+	
 	// 공지사항 게시글 전체 가져오기
 	public List<NoticeDTO> noticeList() {
 		return sqlSession.getMapper(NoticeMapper.class).noticeList();
@@ -42,10 +46,6 @@ public class NoticeDAO {
 	// 글 삭제
 	 public int noticeDelete(NoticeDTO dto) {
 		 return sqlSession.getMapper(NoticeMapper.class).noticeDelete(dto);
-	}
-	public int insertAttach(Map<String, Object> param) {
-		return sqlSession.getMapper(NoticeMapper.class).insertAttach(param);
-		
 	}
 	
 	// 파일이 저장되어 있으면 가져오기
