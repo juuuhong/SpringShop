@@ -68,7 +68,7 @@
 			userId,
 			title,
 			content,
-			TO_CHAR(TO_TIMESTAMP(createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD HH24:MI') "createAt",
+			TO_CHAR(TO_TIMESTAMP(createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') "createAt",
 			readcount
 		from notice ORDER BY num DESC
 	</select>

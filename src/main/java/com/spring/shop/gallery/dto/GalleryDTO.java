@@ -7,13 +7,13 @@ public class GalleryDTO {
 	private String content;
 	private String createAt;
 	private int readcount;
-	private String img;
+	private String saved_file_name;
 
 	public GalleryDTO() {
 		
 	}
 
-	public GalleryDTO(int num, String userId, String title, String content, String createAt, int readcount, String img) {
+	public GalleryDTO(int num, String userId, String title, String content, String createAt, int readcount, String saved_file_name) {
 		super();
 		this.num = num;
 		this.userId = userId;
@@ -21,15 +21,15 @@ public class GalleryDTO {
 		this.content = content;
 		this.createAt = createAt;
 		this.readcount = readcount;
-		this.img = img;
+		this.saved_file_name = saved_file_name;
 	}
 	
-	public String getImg() {
-		return img;
+	public String getSaved_file_name() {
+		return saved_file_name;
 	}
 	
-	public void setImg(String img) {
-		this.img = img;
+	public void setSaved_file_name(String saved_file_name) {
+		this.saved_file_name = saved_file_name;
 	}
 
 	public int getNum() {

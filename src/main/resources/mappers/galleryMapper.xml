@@ -37,14 +37,20 @@
 	</insert>
 	
 	<!-- 갤러리 리스트 가져오기 -->
-	<select id="noticeList" parameterType="com.spring.shop.gallery.dto.GalleryDTO" resultType="GalleryDTO">
+	<select id="galleryList" parameterType="com.spring.shop.gallery.dto.GalleryDTO" resultType="GalleryDTO">
 		select
-			num,
-			userId,
-			title,
-			content,
-			TO_CHAR(TO_TIMESTAMP(createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD HH24:MI') "createAt",
-			readcount
-		from gallery ORDER BY num DESC
+			g.num,
+			g.userId,
+			g.title,
+			g.content,
+			TO_CHAR(TO_TIMESTAMP(g.createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') "createAt",
+			g.readcount,
+			ba.saved_file_name
+		from
+			gallery as g
+		left outer join
+			board_attach as ba 
+		on
+			g.num = ba.board_id order by g.num desc;
 	</select>
 </mapper>
