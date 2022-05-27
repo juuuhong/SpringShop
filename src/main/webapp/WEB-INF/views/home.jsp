@@ -8,6 +8,7 @@
 <!-- 부트스트랩 css 사용 -->
 <link rel="stylesheet" href="/resources/css/datepicker.min.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/resources/css/gallery.css">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="/resources/js/datepicker.min.js"></script>
