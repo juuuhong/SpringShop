@@ -14,4 +14,5 @@ public interface NoticeMapper {
 	int noticeModify(NoticeDTO dto);
 	int noticeDelete(NoticeDTO dto);
 	String getFile(NoticeDTO dto);
+	void deleteFile(NoticeDTO dto);
 }

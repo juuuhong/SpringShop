@@ -47,6 +47,9 @@ public class NoticeDAO {
 	 public int noticeDelete(NoticeDTO dto) {
 		 return sqlSession.getMapper(NoticeMapper.class).noticeDelete(dto);
 	}
+	 public void deleteFile(NoticeDTO dto) {
+		 sqlSession.getMapper(NoticeMapper.class).deleteFile(dto);
+	 }
 	
 	// 파일이 저장되어 있으면 가져오기
 	public String getFile(NoticeDTO dto) {

@@ -53,4 +53,30 @@
 		on
 			g.num = ba.board_id order by g.num desc;
 	</select>
+	
+	<!-- 갤러리 상세페이지 -->
+	<select id="galleryContent" parameterType="com.spring.shop.gallery.dto.GalleryDTO" resultType="GalleryDTO">
+		select
+			g.num,
+			g.userId,
+			g.title,
+			g.content,
+			TO_CHAR(TO_TIMESTAMP(g.createAt, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD HH24:MI') "createAt",
+			g.readcount,
+			ba.saved_file_name
+		from
+			gallery as g
+		join
+			board_attach as ba 
+		on
+			g.num = #{num} and g.num = ba.board_id;
+	</select>
+	
+	<!-- 조회수+1 -->
+	<update id="readcountUp" parameterType="com.spring.shop.gallery.dto.GalleryDTO">
+		update gallery set readcount = readcount+1 where num = #{num}
+	</update>
+	
+	<!-- 갤러리 수정  -->
+	<!-- 갤러리 삭제 -->
 </mapper>

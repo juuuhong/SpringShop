@@ -27,6 +27,7 @@ public class FileService {
 		
 		File saveDir = new File(path);
 		
+		// 폴더만들기..ㅋ
 		if(!saveDir.exists()) {
 			saveDir.mkdirs();
 		}
@@ -54,4 +55,5 @@ public class FileService {
 		
 		return param;
 	}
+	
 }

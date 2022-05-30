@@ -55,6 +55,7 @@ public class NoticeController {
 		UserDTO user = (UserDTO) req.getSession().getAttribute("loginUser");
 //		dto.setUserId(user.getId());
 		dto.setUserId("admin");
+		// dto는 값만받아오는거고 req가 파일자체 받아오는거
 		int result = defaultNoticeService.insertNotice(dto, req);
 		if(result > 0) {
 			m.addAttribute("MSG", "공지사항 작성완료");
@@ -71,9 +72,6 @@ public class NoticeController {
 		dto = defaultNoticeService.noticeContent(dto); 
 		// 조회수+1
 		defaultNoticeService.readcountUp(dto);
-		
-		System.out.println(defaultNoticeService.getFile(dto));
-		
 		m.addAttribute("file", defaultNoticeService.getFile(dto));
 		m.addAttribute("notice", dto);
 		m.addAttribute("content", "noticeContent.jsp");
@@ -90,13 +88,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/noticeModifyPro" , method = RequestMethod.POST)
-	public String noticeModifyPro(Model m, NoticeDTO dto, HttpSession session) {
-		System.out.println(dto.getContent());
-		System.out.println(dto.getTitle());
-		System.out.println(dto.getNum());
+	public String noticeModifyPro(Model m, NoticeDTO dto, HttpSession session,  HttpServletRequest req) throws IOException {
 		UserDTO user = (UserDTO) session.getAttribute("loginUser");
 		dto.setUserId(user.getId());
-		int result = defaultNoticeService.noticeModify(dto); 
+		int result = defaultNoticeService.noticeModify(dto, req); 
 		if(result > 0) {
 			m.addAttribute("MSG", "공지사항 수정완료");
 			m.addAttribute("content", "notice?num='dto.getNum()'.jsp");//?num="+ dto.getNum();
@@ -108,10 +103,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/noticeDelete" , method = RequestMethod.GET)
-	public String noticeDelete(Model m, NoticeDTO dto, HttpSession session) {
+	public String noticeDelete(Model m, NoticeDTO dto, HttpSession session, HttpServletRequest req) {
 		UserDTO user = (UserDTO) session.getAttribute("loginUser");
 		dto.setUserId(user.getId());
-		int result = defaultNoticeService.noticeDelete(dto);
+		int result = defaultNoticeService.noticeDelete(dto, req);
 		if(result > 0) {
 			m.addAttribute("MSG", "공지사항 삭제완료");
 			m.addAttribute("content", "notice.jsp");

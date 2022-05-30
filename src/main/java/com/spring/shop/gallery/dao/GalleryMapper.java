@@ -11,4 +11,13 @@ public interface GalleryMapper {
 	int insertAttach(Map<String, Object> param);
 	// 갤러리 리스트 가져오기
 	List<GalleryDTO> galleryList();
+	// 갤러리 상세페이지
+	GalleryDTO galleryContent(GalleryDTO dto);
+	// 조회수+1
+	void readcountUp(GalleryDTO dto);
+	// 갤러리 수정
+	int galleryModify(GalleryDTO dto);
+	// 갤러리 삭제
+	int galleryDelete(GalleryDTO dto);
+	
 }

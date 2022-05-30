@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.shop.gallery.dto.GalleryDTO;
+import com.spring.shop.notice.dao.NoticeMapper;
+import com.spring.shop.notice.dto.NoticeDTO;
 
 @Repository
 public class GalleryDAO {
@@ -27,5 +29,25 @@ public class GalleryDAO {
 	// 갤러리 리스트 가져오기
 	public List<GalleryDTO> galleryList(){
 		return sqlSession.getMapper(GalleryMapper.class).galleryList();
+	}
+	
+	// 갤러리 상세페이지
+	public GalleryDTO galleryContent(GalleryDTO dto) {
+		return sqlSession.getMapper(GalleryMapper.class).galleryContent(dto);
+	}
+	
+	// 조회수+1
+	public void readcountUp(GalleryDTO dto) {
+		sqlSession.getMapper(GalleryMapper.class).readcountUp(dto);
+	}
+	
+	// 갤러리 수정
+	public int galleryModify(GalleryDTO dto) {
+		return sqlSession.getMapper(GalleryMapper.class).galleryModify(dto);
+	}
+	
+	// 글 삭제
+	 public int galleryDelete(GalleryDTO dto) {
+		 return sqlSession.getMapper(GalleryMapper.class).galleryDelete(dto);
 	}
 }

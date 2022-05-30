@@ -14,8 +14,8 @@ public interface NoticeService {
 	NoticeDTO noticeContent(NoticeDTO dto);
 	String getFile(NoticeDTO dto);
 	void readcountUp(NoticeDTO dto);
-	int noticeModify(NoticeDTO dto);
-	int noticeDelete(NoticeDTO dto);
+	int noticeModify(NoticeDTO dto, HttpServletRequest req) throws IOException;
+	int noticeDelete(NoticeDTO dto, HttpServletRequest req);
 	
 	//Map<String, Object> uploadImg(MultipartFile img);
 }

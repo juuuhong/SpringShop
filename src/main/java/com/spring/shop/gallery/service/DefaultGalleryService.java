@@ -66,4 +66,27 @@ public class DefaultGalleryService implements GalleryService{
 	public List<GalleryDTO> galleryList() {
 		return galleryDAO.galleryList(); 
 	}
+	
+	// 갤러리 상세페이지
+	@Override
+	public GalleryDTO galleryContent(GalleryDTO dto) {
+		return galleryDAO.galleryContent(dto);
+	}
+	// 조회수+1
+	@Override
+	public void readcountUp(GalleryDTO dto) {
+		 galleryDAO.readcountUp(dto);
+	}
+
+	// 갤러리 수정
+	@Override
+	public int galleryModify(GalleryDTO dto) {
+		return  galleryDAO.galleryModify(dto);
+	}
+
+	// 갤러리 삭제
+	@Override
+	public int galleryDelete(GalleryDTO dto) {
+		return  galleryDAO.galleryDelete(dto);
+	}
 }

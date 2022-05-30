@@ -82,4 +82,7 @@
 	<delete id="noticeDelete" parameterType="com.spring.shop.notice.dto.NoticeDTO">
 		DELETE FROM notice WHERE num = #{num} and  userId = #{userId}
 	</delete>
+	<delete id="deleteFile" parameterType="com.spring.shop.notice.dto.NoticeDTO">
+		delete from board_attach where board_id = #{num};
+	</delete>
 </mapper>
