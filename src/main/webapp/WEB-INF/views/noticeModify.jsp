@@ -75,6 +75,6 @@
 		var elem = document.getElementById("previewImg");
 		elem.src = "/resources/file/${requestScope.file}" ; // 기존이미지 보여주기
 		  /* var file = document.getElementById("file");
-		  file.value = ${requestScope.file}; // file 초기화 */
+		  file.value = ${requestScope.file}; // file 초기화 */ 
 	}
 </script>
